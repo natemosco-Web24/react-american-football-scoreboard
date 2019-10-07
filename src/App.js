@@ -25,7 +25,7 @@ function App() {
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
-          <div className="home" onClick={() => { setup() }}>
+          <div className="home" onClick={() => setup()}>
             <h2 className="home__name">{homeTeam}</h2>
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
