@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import "./App.css";
 import "./"
 import Football from "./components/Football"
+import Baseball from "./components/Baseball"
 
 function App() {
-  const [baseball, setBaseball] = useState(false)
-  const [football, setFootball] = useState(true)
+  const [baseball, setBaseball] = useState(true)
+  const [football, setFootball] = useState(false)
 
   let playBaseball = () => {
     setBaseball(true)
@@ -18,7 +19,7 @@ function App() {
   }
   const sport = () => {
     if (baseball) {
-      return <h1>not done with it yet</h1>
+      return <Baseball></Baseball>
     } else if (football) {
       return <Football></Football>
     }
