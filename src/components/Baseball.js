@@ -15,22 +15,24 @@ export default function Baseball() {
     const [homeInningScore, setHomeInningScore] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [guestRHE, setGuestRHE] = useState([0, 0, 0]);
     const [homeRHE, setHomeRHE] = useState([0, 0, 0]);
-
+    console.log(currentInning)
+    console.dir(currentInning)
     const inningUp = () => {
         if (currentInning == 10) {
             return null
         } else {
             setCurrentInning(currentInning => currentInning + 1)
+            document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
         }
-        document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
     }
     const inningDown = () => {
         if (currentInning == 1) {
             return null
         } else {
             setCurrentInning(currentInning => currentInning - 1)
+            document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
+            document.querySelector(`.inning${currentInning + 1}`).style.backgroundColor = "black"
         }
-        document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
     }
     const currentScore = () => {
 
@@ -75,26 +77,26 @@ export default function Baseball() {
                         <p className="inning8">08</p>
                         <p className="inning9">09</p>
                         <p className="inning10">10</p>
-                        <p className="runs">1</p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs">1</p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
-                        <p className="runs"></p>
+                        <p className="runs">{guestInningScore[1]}</p>
+                        <p className="runs">{guestInningScore[2]}</p>
+                        <p className="runs">{guestInningScore[3]}</p>
+                        <p className="runs">{guestInningScore[4]}</p>
+                        <p className="runs">{guestInningScore[5]}</p>
+                        <p className="runs">{guestInningScore[6]}</p>
+                        <p className="runs">{guestInningScore[7]}</p>
+                        <p className="runs">{guestInningScore[8]}</p>
+                        <p className="runs">{guestInningScore[9]}</p>
+                        <p className="runs">{guestInningScore[10]}</p>
+                        <p className="runs">{homeInningScore[0]}</p>
+                        <p className="runs">{homeInningScore[1]}</p>
+                        <p className="runs">{homeInningScore[2]}</p>
+                        <p className="runs">{homeInningScore[3]}</p>
+                        <p className="runs">{homeInningScore[4]}</p>
+                        <p className="runs">{homeInningScore[5]}</p>
+                        <p className="runs">{homeInningScore[6]}</p>
+                        <p className="runs">{homeInningScore[7]}</p>
+                        <p className="runs">{homeInningScore[8]}</p>
+                        <p className="runs">{homeInningScore[9]}</p>
                     </div>
                     <div className="totals">
                         <p>RUNS</p>
@@ -121,20 +123,20 @@ export default function Baseball() {
                     <button className="general" onClick={() => { inningDown() }}>Inning down</button>
                 </div>
                 <div className="middle">
-                    <button className="guest">Guest Run +</button>
-                    <button className="guest">Guest Run -</button>
-                    <button className="guest">Guest Hit +</button>
-                    <button className="guest">Guest Hit -</button>
-                    <button className="guest">Guest Error +</button>
-                    <button className="guest">Guest Error -</button>
+                    <button className="guest" onClick={() => { currentScore(); setGuestInningScore(guestInningScore => guestInningScore[currentInning - 1] + 1) }}>Guest Run +</button>
+                    <button className="guest" onClick={() => { currentScore(); setGuestInningScore(guestInningScore => guestInningScore[currentInning - 1] - 1) }}>Guest Run -</button>
+                    <button className="guest" onClick={() => { setGuestRHE(guestRHE => guestRHE[1] + 1) }}>Guest Hit +</button>
+                    <button className="guest" onClick={() => { setGuestRHE(guestRHE => guestRHE[1] - 1) }}>Guest Hit -</button>
+                    <button className="guest" onClick={() => { setGuestRHE(guestRHE => guestRHE[2] + 1) }}>Guest Error +</button>
+                    <button className="guest" onClick={() => { setGuestRHE(guestRHE => guestRHE[2] - 1) }}>Guest Error -</button>
                 </div>
                 <div className="right">
-                    <button className="Home">Home Run +</button>
-                    <button className="Home">Home Run -</button>
-                    <button className="Home">Home Hit +</button>
-                    <button className="Home">Home Hit -</button>
-                    <button className="Home">Home Error +</button>
-                    <button className="Home">Home Error -</button>
+                    <button className="Home" onClick={() => { currentScore(); setHomeInningScore(homeInningScore => homeInningScore[currentInning - 1] + 1) }}>Home Run +</button>
+                    <button className="Home" onClick={() => { currentScore(); setHomeInningScore(homeInningScore => homeInningScore[currentInning - 1] - 1) }}>Home Run -</button>
+                    <button className="Home" onClick={() => { setHomeRHE(homeRHE => homeRHE[1] + 1) }}>Home Hit +</button>
+                    <button className="Home" onClick={() => { setHomeRHE(homeRHE => homeRHE[1] - 1) }}>Home Hit -</button>
+                    <button className="Home" onClick={() => { setHomeRHE(homeRHE => homeRHE[2] + 1) }}>Home Error +</button>
+                    <button className="Home" onClick={() => { setHomeRHE(homeRHE => homeRHE[2] - 1) }}>Home Error -</button>
                 </div>
             </main>
         </>
