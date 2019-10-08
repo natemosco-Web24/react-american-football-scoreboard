@@ -1,20 +1,25 @@
-import React, { useState } from "react"
-import "../index.scss"
+import React, { useState } from "react";
+import "../index.scss";
 
 export default function Baseball() {
-    const [ball, setBall] = useState(0)
-    const [strike, setStrike] = useState(0)
-    const [out, setOut] = useState(0)
-    const [homeScore, setHomeScore] = useState(0)
-    const [guestScore, setGuestScore] = useState(0)
-    const [guestInningScore, setGuestInningScore] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    const [homeInningScore, setHomeInningScore] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    const [guestRHE, setGuestRHE] = useState([0, 0, 0])
-    const [homeRHE, setHomeRHE] = useState([0, 0, 0])
+    const [ball, setBall] = useState(0);
+    const [strike, setStrike] = useState(0);
+    const [out, setOut] = useState(0);
+    const [atBat, setAtBat] = useState(0);
+
+    // const [homeHits, sethomeHit] = useState(0);
+    // const [guestHits, setGuestHits] = useState(0);
+    // const [homeScore, setHomeScore] = useState(0);
+    // const [guestScore, setGuestScore] = useState(0);
+    const [guestInningScore, setGuestInningScore] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    const [homeInningScore, setHomeInningScore] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    const [guestRHE, setGuestRHE] = useState([0, 0, 0]);
+    const [homeRHE, setHomeRHE] = useState([0, 0, 0]);
 
     const currentScore = () => {
-        setHomeScore(homeInningScore[0] + homeInningScore[1] + homeInningScore[2] + homeInningScore[3] + homeInningScore[4] + homeInningScore[5] + homeInningScore[6] + homeInningScore[7] + homeInningScore[8] + homeInningScore[9]);
-        setGuestScore(guestInningScore[0] + guestInningScore[1] + guestInningScore[2] + guestInningScore[3] + guestInningScore[4] + guestInningScore[5] + guestInningScore[6] + guestInningScore[7] + guestInningScore[8] + guestInningScore[9]);
+
+        setHomeRHE(homeRHE[0] = homeInningScore[0] + homeInningScore[1] + homeInningScore[2] + homeInningScore[3] + homeInningScore[4] + homeInningScore[5] + homeInningScore[6] + homeInningScore[7] + homeInningScore[8] + homeInningScore[9]);
+        setGuestRHE(guestRHE[0] = guestInningScore[0] + guestInningScore[1] + guestInningScore[2] + guestInningScore[3] + guestInningScore[4] + guestInningScore[5] + guestInningScore[6] + guestInningScore[7] + guestInningScore[8] + guestInningScore[9]);
     }
 
     return (
@@ -29,13 +34,13 @@ export default function Baseball() {
                         <h3>BALL</h3>
                         <h3>STRIKE</h3>
                         <h3>OUT</h3>
-                        <p>1</p>
-                        <p>2</p>
-                        <p>3</p>
+                        <p>{ball}</p>
+                        <p>{strike}</p>
+                        <p>{out}</p>
                     </div>
                     <div className="at-bat">
                         <h3>AT BAT</h3>
-                        <p>32</p>
+                        <p>{atBat}</p>
                     </div>
                 </section>
                 <section className="bottom">
@@ -79,17 +84,19 @@ export default function Baseball() {
                         <p>RUNS</p>
                         <p>HITS</p>
                         <p>ERR</p>
-                        <p>{guestScore}</p>
-                        <p>4</p>
-                        <p>1</p>
-                        <p>{homeScore}</p>
-                        <p>8</p>
-                        <p>2</p>
+                        <p>{guestRHE[0]}</p>
+                        <p>{guestRHE[1]}</p>
+                        <p>{guestRHE[2]}</p>
+                        <p>{homeRHE[0]}</p>
+                        <p>{homeRHE[1]}</p>
+                        <p>{homeRHE[2]}</p>
                     </div>
                 </section>
             </main>
             <main className="controls">
                 <div className="left">
+
+                    <button className="general">Reset Ball/Strike/Outs</button>
                     <button className="general">Ball</button>
                     <button className="general">Strike</button>
                     <button className="general">Outs</button>
@@ -98,18 +105,20 @@ export default function Baseball() {
                     <button className="general">Inning down</button>
                 </div>
                 <div className="middle">
-                    <button className="guest">inning</button>
-                    <button className="guest"></button>
-                    <button className="guest"></button>
-                    <button className="guest"></button>
-                    <button className="guest"></button>
+                    <button className="guest">Guest Run +</button>
+                    <button className="guest">Guest Run -</button>
+                    <button className="guest">Guest Hit +</button>
+                    <button className="guest">Guest Hit -</button>
+                    <button className="guest">Guest Error +</button>
+                    <button className="guest">Guest Error -</button>
                 </div>
                 <div className="right">
-                    <button className="Home"></button>
-                    <button className="Home"></button>
-                    <button className="Home"></button>
-                    <button className="Home"></button>
-                    <button className="Home"></button>
+                    <button className="Home">Home Run +</button>
+                    <button className="Home">Home Run -</button>
+                    <button className="Home">Home Hit +</button>
+                    <button className="Home">Home Hit -</button>
+                    <button className="Home">Home Error +</button>
+                    <button className="Home">Home Error -</button>
                 </div>
             </main>
         </>

@@ -6,8 +6,8 @@ import Football from "./components/Football"
 import Baseball from "./components/Baseball"
 
 function App() {
-  const [baseball, setBaseball] = useState(true)
-  const [football, setFootball] = useState(false)
+  const [baseball, setBaseball] = useState(false)
+  const [football, setFootball] = useState(true)
 
   let playBaseball = () => {
     setBaseball(true)
