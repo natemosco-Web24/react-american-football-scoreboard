@@ -6,7 +6,7 @@ export default function Baseball() {
     const [strike, setStrike] = useState(0);
     const [out, setOut] = useState(0);
     const [atBat, setAtBat] = useState(0);
-
+    const [currentInning, setCurrentInning] = useState(1)
     // const [homeHits, sethomeHit] = useState(0);
     // const [guestHits, setGuestHits] = useState(0);
     // const [homeScore, setHomeScore] = useState(0);
@@ -16,6 +16,22 @@ export default function Baseball() {
     const [guestRHE, setGuestRHE] = useState([0, 0, 0]);
     const [homeRHE, setHomeRHE] = useState([0, 0, 0]);
 
+    const inningUp = () => {
+        if (currentInning == 10) {
+            return null
+        } else {
+            setCurrentInning(currentInning => currentInning + 1)
+        }
+        document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
+    }
+    const inningDown = () => {
+        if (currentInning == 1) {
+            return null
+        } else {
+            setCurrentInning(currentInning => currentInning - 1)
+        }
+        document.querySelector(`.inning${currentInning}`).style.backgroundColor = "#5a5a0f"
+    }
     const currentScore = () => {
 
         setHomeRHE(homeRHE[0] = homeInningScore[0] + homeInningScore[1] + homeInningScore[2] + homeInningScore[3] + homeInningScore[4] + homeInningScore[5] + homeInningScore[6] + homeInningScore[7] + homeInningScore[8] + homeInningScore[9]);
@@ -96,13 +112,13 @@ export default function Baseball() {
             <main className="controls">
                 <div className="left">
 
-                    <button className="general">Reset Ball/Strike/Outs</button>
-                    <button className="general">Ball</button>
-                    <button className="general">Strike</button>
-                    <button className="general">Outs</button>
-                    <button className="general">At Bat</button>
-                    <button className="general">Inning Up</button>
-                    <button className="general">Inning down</button>
+                    <button className="general" onClick={() => { setBall(0); setStrike(0); setOut(0) }}>Reset Ball/Strike/Outs</button>
+                    <button className="general" onClick={() => { setBall(ball => ball + 1) }}>Ball</button>
+                    <button className="general" onClick={() => { setStrike(strike => strike + 1) }}>Strike</button>
+                    <button className="general" onClick={() => { setOut(out => out + 1) }}>Outs</button>
+                    <button className="general" onClick={() => { setAtBat(atBat => atBat + 1) }}>At Bat</button>
+                    <button className="general" onClick={() => { inningUp() }}>Inning Up</button>
+                    <button className="general" onClick={() => { inningDown() }}>Inning down</button>
                 </div>
                 <div className="middle">
                     <button className="guest">Guest Run +</button>
